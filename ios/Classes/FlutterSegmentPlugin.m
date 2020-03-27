@@ -9,10 +9,22 @@ static NSDictionary *_appendToContextMiddleware;
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   @try {
+    FlutterMethodChannel* channel = [FlutterMethodChannel
+                                    methodChannelWithName:@"flutter_segment"
+                                    binaryMessenger:[registrar messenger]];
+    FlutterSegmentPlugin* instance = [[FlutterSegmentPlugin alloc] init];
+    [registrar addMethodCallDelegate:instance channel:channel];
+
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Info" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *writeKey = [dict objectForKey: @"com.claimsforce.segment.WRITE_KEY"];
     BOOL trackApplicationLifecycleEvents = [[dict objectForKey: @"com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS"] boolValue];
+
+    // Do not execute if there is no write key
+    if(writeKey == nil) {
+        return;
+    }
+
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:writeKey];
 
     // This middleware is responsible for manipulating only the context part of the request,
@@ -101,11 +113,6 @@ static NSDictionary *_appendToContextMiddleware;
 
     configuration.trackApplicationLifecycleEvents = trackApplicationLifecycleEvents;
     [SEGAnalytics setupWithConfiguration:configuration];
-    FlutterMethodChannel* channel = [FlutterMethodChannel
-      methodChannelWithName:@"flutter_segment"
-      binaryMessenger:[registrar messenger]];
-    FlutterSegmentPlugin* instance = [[FlutterSegmentPlugin alloc] init];
-    [registrar addMethodCallDelegate:instance channel:channel];
   }
   @catch (NSException *exception) {
     NSLog(@"%@", [exception reason]);

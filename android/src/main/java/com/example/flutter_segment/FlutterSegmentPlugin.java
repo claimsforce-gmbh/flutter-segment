@@ -57,6 +57,12 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
       Bundle bundle = ai.metaData;
       String writeKey = bundle.getString("com.claimsforce.segment.WRITE_KEY");
       Boolean trackApplicationLifecycleEvents = bundle.getBoolean("com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS");
+
+      // Do not execute if there is no write key
+      if (writeKey == null) {
+        return;
+      }
+
       Analytics.Builder analyticsBuilder = new Analytics.Builder(applicationContext, writeKey);
       if (trackApplicationLifecycleEvents) {
         // Enable this to record certain application events automatically
