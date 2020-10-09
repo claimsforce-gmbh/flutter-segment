@@ -10,7 +10,7 @@ class Segment {
   static SegmentPlatform get _segment => SegmentPlatform.instance;
 
   static Future<void> identify({
-    @required userId,
+    @required String userId,
     Map<String, dynamic> traits,
     Map<String, dynamic> options,
   }) {
