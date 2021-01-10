@@ -81,7 +81,25 @@ Setup your Android, iOS and/or web sources as described at Segment.com and gener
 Set your Segment write key and change the automatic event tracking (only for Android and iOS) on if you wish the library to take care of it for you.
 Remember that the application lifecycle events won't have any special context set for you by the time it is initialized.
 
-### Android`
+### Via Dart Code
+```dart
+void main() {
+  /// Wait until the platform channel is properly initialized so we can call
+  /// `setContext` during the app initialization.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Segment.config(
+    options: SegmentConfig(
+      writeKey: 'YOUR_WRITE_KEY_GOES_HERE',
+      trackApplicationLifecycleEvents: false,
+      amplitudeIntegrationEnabled: false,
+      debug: false,
+    ),
+  );
+}
+```
+
+### Android _(Deprecated*)_
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.flutter_segment_example">
     <application>
@@ -96,7 +114,7 @@ Remember that the application lifecycle events won't have any special context se
 </manifest>
 ```
 
-### iOS
+### iOS _(Deprecated*)_
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -208,3 +226,5 @@ Please file any issues, bugs, or feature requests in the [GitHub repo](https://g
 
 ## Contributing
 If you wish to contribute a change to this repo, please send a [pull request](https://github.com/claimsforce-gmbh/flutter-segment/pulls).
+
+_<sup>*</sup>This installation method will be removed, please use the [Installation via Dart Code](#via-dart-code) instructions._
