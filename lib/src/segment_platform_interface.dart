@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:flutter_segment/src/segment_config.dart';
 import 'package:flutter_segment/src/segment_method_channel.dart';
 
 abstract class SegmentPlatform {
@@ -10,6 +11,12 @@ abstract class SegmentPlatform {
   ///
   /// Defaults to [SegmentMethodChannel]
   static SegmentPlatform instance = SegmentMethodChannel();
+
+  Future<void> config({
+    @required SegmentConfig options,
+  }) {
+    throw UnimplementedError('config() has not been implemented.');
+  }
 
   Future<void> identify({
     @required userId,

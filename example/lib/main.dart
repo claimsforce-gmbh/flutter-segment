@@ -8,6 +8,13 @@ void main() {
   /// `setContext` during the app initialization.
   WidgetsFlutterBinding.ensureInitialized();
 
+  Segment.config(
+    options: SegmentConfig(
+        writeKey: 'YOUR_WRITE_KEY_GOES_HERE',
+        trackApplicationLifecycleEvents: false,
+    ),
+  );
+
   /// The `context.device.token` is a special property.
   /// When you define it, setting the context again with no token property (ex: `{}`)
   /// has no effect on cleaning up the device token.
@@ -100,13 +107,13 @@ class MyApp extends StatelessWidget {
             Spacer(),
             Platform.isIOS
                 ? Center(
-                    child: FlatButton(
-                      child: Text('Debug mode'),
-                      onPressed: () {
-                        Segment.debug(true);
-                      },
-                    ),
-                  )
+              child: FlatButton(
+                child: Text('Debug mode'),
+                onPressed: () {
+                  Segment.debug(true);
+                },
+              ),
+            )
                 : Container(),
             Spacer(),
           ],

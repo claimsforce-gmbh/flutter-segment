@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:meta/meta.dart';
+import 'package:flutter_segment/src/segment_config.dart';
 import 'package:flutter_segment/src/segment_platform_interface.dart';
 
 export 'package:flutter_segment/src/segment_observer.dart';
@@ -17,6 +18,14 @@ class Segment {
     return _segment.identify(
       userId: userId,
       traits: traits,
+      options: options,
+    );
+  }
+
+  static Future<void> config({
+    @required SegmentConfig options,
+  }) {
+    return _segment.config(
       options: options,
     );
   }
