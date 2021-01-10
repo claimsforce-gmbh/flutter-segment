@@ -1,11 +1,24 @@
 import 'package:meta/meta.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_segment/src/segment_config.dart';
 import 'package:flutter_segment/src/segment_default_options.dart';
 import 'package:flutter_segment/src/segment_platform_interface.dart';
 
 const MethodChannel _channel = MethodChannel('flutter_segment');
 
 class SegmentMethodChannel extends SegmentPlatform {
+  Future<void> config({
+    @required SegmentConfig options,
+  }) async {
+    try {
+      await _channel.invokeMethod('config', {
+        'options': options.toMap(),
+      });
+    } on PlatformException catch (exception) {
+      print(exception);
+    }
+  }
+
   Future<void> identify({
     @required userId,
     Map<String, dynamic> traits,
