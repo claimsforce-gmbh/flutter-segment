@@ -1,33 +1,24 @@
 PODS:
-  - Amplitude-iOS (4.8.2)
-  - Analytics (3.7.0)
-  - Branch (0.33.1):
-    - Branch/Core (= 0.33.1)
-  - Branch/Core (0.33.1)
+  - Amplitude (7.0.1)
+  - Analytics (4.1.2)
   - Flutter (1.0.0)
   - flutter_segment (0.0.1):
-    - Analytics (= 3.7.0)
+    - Analytics (~> 4.1.2)
     - Flutter
-    - Segment-Amplitude (= 3.0.1)
-    - Segment-Branch (= 0.1.22)
-  - Segment-Amplitude (3.0.1):
-    - Amplitude-iOS (~> 4.8.0)
-    - Analytics (~> 3.7.0)
-  - Segment-Branch (0.1.22):
+    - Segment-Amplitude (~> 3.2.3)
+  - Segment-Amplitude (3.2.3):
+    - Amplitude (~> 7.0.1)
     - Analytics
-    - Branch (~> 0.33.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_segment (from `.symlinks/plugins/flutter_segment/ios`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Amplitude-iOS
+  trunk:
+    - Amplitude
     - Analytics
-    - Branch
     - Segment-Amplitude
-    - Segment-Branch
 
 EXTERNAL SOURCES:
   Flutter:
@@ -36,14 +27,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_segment/ios"
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
-  Analytics: 77fd5fb102a4a5eedafa2c2b0245ceb7b7c15e45
-  Branch: 65d05ffb137ef504777cff6bd4fb6f770f17145a
+  Amplitude: 31a9038dca905b78294418ed277da9c2e07658ad
+  Analytics: 177da2c597aba83a6882b706ca6e0a071fd7cd26
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_segment: 2998835d0955a5d2c0708bed5c9d083db608efca
-  Segment-Amplitude: 1b3b02a2e92f4b08a413a72bf7aa44f78566ab3b
-  Segment-Branch: f255ba1354f6aa1bc8654d450b3b933380f2558d
+  flutter_segment: bff2732e94a563b275d4718ba8efd37fbe91f613
+  Segment-Amplitude: 79e13fa0aa58341212041f524f5f9679e40c23de
 
-PODFILE CHECKSUM: 970bf863efb3fa7e2bb3e77c0ba50af7a1f3964d
+PODFILE CHECKSUM: 76aaac2b301aa40241aa71d54b58fe3a3c060f7b
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.10.0

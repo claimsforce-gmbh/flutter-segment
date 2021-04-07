@@ -37,7 +37,11 @@
             Remember that the application lifecycle events won't have any
             special context set for you by the time it is initialized. -->
         <meta-data android:name="com.claimsforce.segment.WRITE_KEY" android:value="YOUR_WRITE_KEY_GOES_HERE" />
-        <meta-data android:name="com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS" android:value="false" />
+        <meta-data android:name="com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS" android:value="true" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
         <!--
             If you want to debug the plugin events. Default is false.
             <meta-data android:name="com.claimsforce.segment.DEBUG" android:value="true" />

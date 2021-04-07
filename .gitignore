@@ -590,3 +590,6 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/git,dart,flutter,intellij,webstorm,visualstudio
+
+
+.last_build_id

@@ -108,7 +108,7 @@ Remember that the application lifecycle events won't have any special context se
 	<key>com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS</key>
 	<false/>
 	<key>com.claimsforce.segment.ENABLE_AMPLITUDE_INTEGRATION</key>
-    <false/>
+	<false/>
 	[...]
 </dict>
 </plist>

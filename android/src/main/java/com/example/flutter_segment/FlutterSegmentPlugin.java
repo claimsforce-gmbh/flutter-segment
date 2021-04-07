@@ -59,9 +59,9 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
       Bundle bundle = ai.metaData;
 
       String writeKey = bundle.getString("com.claimsforce.segment.WRITE_KEY");
-      Boolean trackApplicationLifecycleEvents = bundle.getBoolean("com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS");
-      Boolean isAmplitudeIntegrationEnabled = bundle.getBoolean("com.claimsforce.segment.ENABLE_AMPLITUDE_INTEGRATION", false);
-      Boolean debug = bundle.getBoolean("com.claimsforce.segment.DEBUG", false);
+      boolean trackApplicationLifecycleEvents = bundle.getBoolean("com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS");
+      boolean isAmplitudeIntegrationEnabled = bundle.getBoolean("com.claimsforce.segment.ENABLE_AMPLITUDE_INTEGRATION", false);
+      boolean debug = bundle.getBoolean("com.claimsforce.segment.DEBUG", false);
 
       Analytics.Builder analyticsBuilder = new Analytics.Builder(applicationContext, writeKey);
       if (trackApplicationLifecycleEvents) {
@@ -79,7 +79,7 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
 
       // Here we build a middleware that just appends data to the current context
       // using the [deepMerge] strategy.
-      analyticsBuilder.middleware(
+      analyticsBuilder.useSourceMiddleware(
         new Middleware() {
           @Override
           public void intercept(Chain chain) {
@@ -303,7 +303,7 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
 
   private void setContext(MethodCall call, Result result) {
     try {
-      this.appendToContextMiddleware = call.argument("context");
+      appendToContextMiddleware = call.argument("context");
       result.success(true);
     } catch (Exception e) {
       result.error("FlutterSegmentException", e.getLocalizedMessage(), null);
@@ -335,8 +335,8 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
   /**
    * Enables / disables / sets custom integration properties so Segment can properly
    * interact with 3rd parties, such as Amplitude.
-   * @see https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/#selecting-destinations
-   * @see https://github.com/segmentio/analytics-android/blob/master/analytics/src/main/java/com/segment/analytics/Options.java
+   * https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/#selecting-destinations
+   * https://github.com/segmentio/analytics-android/blob/master/analytics/src/main/java/com/segment/analytics/Options.java
    */
   @SuppressWarnings("unchecked")
   private Options buildOptions(HashMap<String, Object> optionsData) {
